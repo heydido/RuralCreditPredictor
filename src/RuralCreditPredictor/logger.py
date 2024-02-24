@@ -5,7 +5,7 @@ from src.RuralCreditPredictor.constants import PROJECT_ROOT
 
 
 LOG_FILE = f"{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}.log"
-logs_path = os.path.join(PROJECT_ROOT, "logs", LOG_FILE.split('.')[0])
+logs_path = os.path.join(PROJECT_ROOT, "logs")
 os.makedirs(logs_path, exist_ok=True)
 
 LOG_FILE_PATH = os.path.join(logs_path, LOG_FILE)
