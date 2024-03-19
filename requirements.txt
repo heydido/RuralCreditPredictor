@@ -7,3 +7,4 @@ xgboost
 Flask
 streamlit
 rich
+jupyter
