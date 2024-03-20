@@ -1,0 +1,6 @@
+independent_variables:
+  Id: int
+  City: object
+
+target_variable:
+  loan_amount: float
