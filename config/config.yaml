@@ -7,3 +7,8 @@ data_ingestion:
   data_file: artifacts/data_ingestion/RuralCreditData.zip
   unzip_dir: artifacts/data_ingestion
   raw_file: artifacts/data_ingestion/RuralCreditData.csv
+
+data_validation:
+  root_dir: artifacts/data_validation
+  raw_file: artifacts/data_ingestion/RuralCreditData.csv
+  status_file: artifacts/data_validation/status.txt
