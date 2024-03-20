@@ -12,7 +12,7 @@ RuralCreditPredictor: Empowering Tomorrow's Opportunities
     source activate ./venv
     ``` 
    
-## Workflows
+## Workflow:
 1. Update config/config.yaml
 2. Update schema.yaml (if needed)
 3. Update params.yaml (if needed)
