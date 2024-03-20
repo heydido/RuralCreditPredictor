@@ -8,3 +8,7 @@ Flask
 streamlit
 rich
 jupyter
+python-box
+ensure
+pyYAML
+joblib
