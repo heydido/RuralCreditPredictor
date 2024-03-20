@@ -1,0 +1,9 @@
+root:
+  artifact: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_URL: https://github.com/heydido/datasets/raw/main/RuralCreditData.zip
+  data_file: artifacts/data_ingestion/RuralCreditData.zip
+  unzip_dir: artifacts/data_ingestion
+  raw_file: artifacts/data_ingestion/RuralCreditData.csv
