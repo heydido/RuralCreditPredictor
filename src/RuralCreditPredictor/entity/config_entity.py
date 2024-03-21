@@ -16,4 +16,16 @@ class DataValidationConfig:
     root_dir: Path
     raw_file: Path
     status_file: Path
-    schema_file: dict
+    raw_schema: dict
+
+
+@dataclass(frozen=True)
+class DataPreprocessingConfig:
+    root_dir: Path
+    raw_file: Path
+    preprocessed_file: Path
+    cat_features: dict
+    discrete_num_features: dict
+    continuous_num_features: dict
+    selected_features: dict
+    target_variable: str

@@ -6,8 +6,8 @@ independent_variables:
   social_class: object
   primary_business: object
   secondary_business: object
-  annual_income: float
-  monthly_expenses: float
+  annual_income: float64
+  monthly_expenses: float64
   old_dependents: int64
   young_dependents: int64
   home_ownership: float64
