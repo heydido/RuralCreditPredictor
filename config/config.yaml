@@ -16,4 +16,4 @@ data_validation:
 data_preprocessing:
   root_dir: artifacts/data_preprocessing
   raw_file: artifacts/data_ingestion/RuralCreditData.csv
-  preprocessed_file: artifacts/data_preprocessing/preprocessed_data.csv
+  preprocessed_file: artifacts/data_preprocessing/processed_data.csv
