@@ -24,9 +24,10 @@ class ConfigurationManager:
         # Artifact root directory
         create_directories([self.config.root.artifact])
 
-    def get_data_ingestion_config(self) -> DataIngestionConfig:
+    def get_data_ingestion_config(self, log=True) -> DataIngestionConfig:
         try:
-            logging.info("Getting data ingestion configuration:")
+            if log:
+                logging.info("Getting data ingestion configuration:")
 
             config = self.config.data_ingestion
 
@@ -40,17 +41,20 @@ class ConfigurationManager:
                 raw_file=config.raw_file
             )
 
-            logging.info("Data ingestion configuration loaded successfully!")
+            if log:
+                logging.info("Data ingestion configuration loaded successfully!")
 
             return data_ingestion_config
 
         except Exception as e:
-            logging.error(f"Error occurred while getting data ingestion configuration!")
+            if log:
+                logging.error(f"Error occurred while getting data ingestion configuration!")
             raise CustomException(e, sys)
 
-    def get_data_validation_config(self) -> DataValidationConfig:
+    def get_data_validation_config(self, log=True) -> DataValidationConfig:
         try:
-            logging.info("Getting data validation configuration:")
+            if log:
+                logging.info("Getting data validation configuration:")
 
             config = self.config.data_validation
             raw_schema = self.raw_schema.independent_variables
@@ -64,17 +68,20 @@ class ConfigurationManager:
                 raw_schema=raw_schema
             )
 
-            logging.info("Data validation configuration loaded successfully!")
+            if log:
+                logging.info("Data validation configuration loaded successfully!")
 
             return data_validation_config
 
         except Exception as e:
-            logging.error(f"Error occurred while getting data validation configuration!")
+            if log:
+                logging.error(f"Error occurred while getting data validation configuration!")
             raise CustomException(e, sys)
 
-    def get_data_preprocessing_config(self) -> DataPreprocessingConfig:
+    def get_data_preprocessing_config(self, log=True) -> DataPreprocessingConfig:
         try:
-            logging.info("Getting data preprocessing configuration:")
+            if log:
+                logging.info("Getting data preprocessing configuration:")
 
             config = self.config.data_preprocessing
             cat_features = self.processed_schema.cat_features
@@ -96,17 +103,20 @@ class ConfigurationManager:
                 target_variable=target_variable
             )
 
-            logging.info("Data preprocessing configuration loaded successfully!")
+            if log:
+                logging.info("Data preprocessing configuration loaded successfully!")
 
             return data_preprocessing_config
 
         except Exception as e:
-            logging.error(f"Error occurred while getting data preprocessing configuration!")
+            if log:
+                logging.error(f"Error occurred while getting data preprocessing configuration!")
             raise CustomException(e, sys)
 
-    def get_data_transformer_config(self) -> DataTransformationConfig:
+    def get_data_transformer_config(self, log=True) -> DataTransformationConfig:
         try:
-            logging.info("Getting data transformation configuration:")
+            if log:
+                logging.info("Getting data transformation configuration:")
 
             config = self.config.data_transformation
             cat_features = self.processed_schema.cat_features
@@ -128,10 +138,12 @@ class ConfigurationManager:
                 data_transformer=config.data_transformer
             )
 
-            logging.info("Data transformation configuration loaded successfully!")
+            if log:
+                logging.info("Data transformation configuration loaded successfully!")
 
             return data_transformation_config
 
         except Exception as e:
-            logging.error(f"Error occurred while getting data transformation configuration!")
+            if log:
+                logging.error(f"Error occurred while getting data transformation configuration!")
             raise CustomException(e, sys)
