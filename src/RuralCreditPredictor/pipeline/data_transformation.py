@@ -19,7 +19,7 @@ class DataTransformationPipeline:
         data_transformation = DataTransformation(config=data_transformation_config)
         data_transformation.split_data()
         data_transformation.get_data_transformer()
-        data_transformation.transform_data()
+        data_transformation.get_transformed_data()
         data_transformation.save_data_transformer()
 
 

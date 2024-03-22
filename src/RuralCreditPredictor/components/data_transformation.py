@@ -62,7 +62,7 @@ class DataTransformation:
             logging.error(f"> Error occurred while getting data transformer!")
             raise CustomException(e, sys)
 
-    def transform_data(self) -> tuple:
+    def get_transformed_data(self) -> tuple:
         try:
             logging.info("> Transforming data:")
 
@@ -87,7 +87,7 @@ class DataTransformation:
         try:
             logging.info("> Saving data transformer:")
 
-            data_transformer, _, _, _, _ = self.transform_data()
+            data_transformer, _, _, _, _ = self.get_transformed_data()
             data_transformer_path = self.config.data_transformer
 
             with open(data_transformer_path, 'wb') as file:
