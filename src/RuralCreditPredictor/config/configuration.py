@@ -115,9 +115,7 @@ class ConfigurationManager:
             data_transformation_config = DataTransformationConfig(
                 root_dir=config.root_dir,
                 preprocessed_file=config.preprocessed_file,
-                data_transformer=config.data_transformer,
-                train_data=config.train_data,
-                test_data=config.test_data
+                data_transformer=config.data_transformer
             )
 
             logging.info("Data transformation configuration loaded successfully!")

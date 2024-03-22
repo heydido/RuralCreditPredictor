@@ -36,5 +36,3 @@ class DataTransformationConfig:
     root_dir: Path
     preprocessed_file: Path
     data_transformer: Path
-    train_data: Path
-    test_data: Path
