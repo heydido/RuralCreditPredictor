@@ -14,7 +14,7 @@ RuralCreditPredictor: Empowering Tomorrow's Opportunities
    
 ## Workflow:
 1. Update config: `config/config.yaml`
-2. Update raw data schema: `schema.yaml` (if needed)
+2. Update raw/processed data schema: `raw_schema.yaml/processed_schema.yaml` (if needed)
 3. Update model parameters: `params.yaml` (if needed)
 4. Update the entity: `src/RuralCreditPredictor/entity/config_entity.py`
 5. Update the configuration manager: `src/RuralCreditPredictor/config/configuration.py`
