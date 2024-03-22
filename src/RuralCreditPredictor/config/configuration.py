@@ -109,12 +109,22 @@ class ConfigurationManager:
             logging.info("Getting data transformation configuration:")
 
             config = self.config.data_transformation
+            cat_features = self.processed_schema.cat_features
+            discrete_num_features = self.processed_schema.discrete_num_features
+            continuous_num_features = self.processed_schema.continuous_num_features
+            selected_features = self.processed_schema.selected_features
+            target_variable = self.processed_schema.target_variable
 
             create_directories([config.root_dir])
 
             data_transformation_config = DataTransformationConfig(
                 root_dir=config.root_dir,
                 preprocessed_file=config.preprocessed_file,
+                cat_features=cat_features,
+                discrete_num_features=discrete_num_features,
+                continuous_num_features=continuous_num_features,
+                selected_features=selected_features,
+                target_variable=target_variable,
                 data_transformer=config.data_transformer
             )
 

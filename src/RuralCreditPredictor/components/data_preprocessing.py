@@ -10,9 +10,10 @@ class DataPreprocessing:
         self.config = config
         self.data = pd.read_csv(self.config.raw_file)
 
-    def get_columns_list(self) -> tuple:
+    def get_columns_list(self, log=True) -> tuple:
         try:
-            logging.info("Getting num/cat columns list:")
+            if log:
+                logging.info("Getting num/cat columns list:")
 
             cat_features = list(self.config.cat_features.keys())
             discrete_num_features = list(self.config.discrete_num_features.keys())
@@ -22,12 +23,20 @@ class DataPreprocessing:
             selected_features = list(self.config.selected_features.keys())
             target_variable = list(self.config.target_variable.keys())
 
-            logging.info("Columns list ready!")
+            if log:
+                logging.info(
+                    f"Columns list ready! \n"
+                    f" - All Cat features: {cat_features}, \n"
+                    f" - All Num features: {num_features}, \n"
+                    f" - Selected features: {selected_features}, \n"
+                    f" - Target variable: {target_variable}"
+                )
 
             return cat_features, num_features, selected_features, target_variable
 
         except Exception as e:
-            logging.error(f"Error occurred while getting columns list!")
+            if log:
+                logging.error(f"Error occurred while getting columns list!")
             raise CustomException(e, sys)
 
     def impute_missing_values(self) -> None:
@@ -93,6 +102,8 @@ class DataPreprocessing:
 
             self.data = df
 
+            logging.info("Dropped outliers in continuous numerical features successfully!")
+
         except Exception as e:
             logging.error(f"Error occurred while dropping outliers in continuous numerical features!")
             raise CustomException(e, sys)
@@ -103,13 +114,13 @@ class DataPreprocessing:
 
             df = self.data
 
-            _, _, selected_features, target_variable = self.get_columns_list()
+            _, _, selected_features, target_variable = self.get_columns_list(log=False)
 
             df = df[selected_features + target_variable]
 
             self.data = df
 
-            logging.info("Preprocessed data ready to export!")
+            logging.info("Dropped unused columns. Preprocessed data ready to export!")
 
         except Exception as e:
             logging.error(f"Error occurred while getting preprocessed data!")

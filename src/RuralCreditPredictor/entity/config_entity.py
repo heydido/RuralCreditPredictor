@@ -35,4 +35,9 @@ class DataPreprocessingConfig:
 class DataTransformationConfig:
     root_dir: Path
     preprocessed_file: Path
+    cat_features: list
+    discrete_num_features: list
+    continuous_num_features: list
+    selected_features: list
+    target_variable: str
     data_transformer: Path
