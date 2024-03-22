@@ -22,13 +22,7 @@ class DataPreprocessing:
             selected_features = list(self.config.selected_features.keys())
             target_variable = list(self.config.target_variable.keys())
 
-            logging.info(
-                f"Columns list ready! \n"
-                f" - Cat features: {cat_features}, \n"
-                f" - Num features: {num_features}, \n"
-                f" - Selected features: {selected_features}, \n"
-                f" - Target variable: {target_variable}"
-            )
+            logging.info("Columns list ready!")
 
             return cat_features, num_features, selected_features, target_variable
 
