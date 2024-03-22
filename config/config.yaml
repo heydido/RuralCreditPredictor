@@ -17,3 +17,10 @@ data_preprocessing:
   root_dir: artifacts/data_preprocessing
   raw_file: artifacts/data_ingestion/RuralCreditData.csv
   preprocessed_file: artifacts/data_preprocessing/processed_data.csv
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  preprocessed_file: artifacts/data_preprocessing/processed_data.csv
+  data_transformer: artifacts/data_transformation/data_transformer.pkl
+  train_data: artifacts/data_transformation/train_data.csv
+  test_data: artifacts/data_transformation/test_data.csv
