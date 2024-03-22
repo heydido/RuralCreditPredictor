@@ -25,7 +25,6 @@ continuous_num_features:
 
 
 selected_features:
-  Id: int64
   age: int64
   sex: object
   annual_income: float64
