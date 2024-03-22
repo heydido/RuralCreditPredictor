@@ -10,14 +10,37 @@ class DataPreprocessing:
         self.config = config
         self.data = pd.read_csv(self.config.raw_file)
 
-    def impute_missing_values(self) -> None:
+    def get_columns_list(self) -> tuple:
         try:
-            logging.info("Imputing missing values:")
+            logging.info("Getting num/cat columns list:")
 
             cat_features = list(self.config.cat_features.keys())
             discrete_num_features = list(self.config.discrete_num_features.keys())
             continuous_num_features = list(self.config.continuous_num_features.keys())
             num_features = discrete_num_features + continuous_num_features
+
+            selected_features = list(self.config.selected_features.keys())
+            target_variable = list(self.config.target_variable.keys())
+
+            logging.info(
+                f"Columns list ready! \n"
+                f" - Cat features: {cat_features}, \n"
+                f" - Num features: {num_features}, \n"
+                f" - Selected features: {selected_features}, \n"
+                f" - Target variable: {target_variable}"
+            )
+
+            return cat_features, num_features, selected_features, target_variable
+
+        except Exception as e:
+            logging.error(f"Error occurred while getting columns list!")
+            raise CustomException(e, sys)
+
+    def impute_missing_values(self) -> None:
+        try:
+            logging.info("Imputing missing values:")
+
+            cat_features, num_features, _, _ = self.get_columns_list()
 
             df = self.data
             all_features = list(df.columns)
@@ -86,8 +109,7 @@ class DataPreprocessing:
 
             df = self.data
 
-            selected_features = list(self.config.selected_features.keys())
-            target_variable = list(self.config.target_variable.keys())
+            _, _, selected_features, target_variable = self.get_columns_list()
 
             df = df[selected_features + target_variable]
 

@@ -24,8 +24,17 @@ class DataPreprocessingConfig:
     root_dir: Path
     raw_file: Path
     preprocessed_file: Path
-    cat_features: dict
-    discrete_num_features: dict
-    continuous_num_features: dict
-    selected_features: dict
+    cat_features: list
+    discrete_num_features: list
+    continuous_num_features: list
+    selected_features: list
     target_variable: str
+
+
+@dataclass(frozen=True)
+class DataTransformationConfig:
+    root_dir: Path
+    preprocessed_file: Path
+    data_transformer: Path
+    train_data: Path
+    test_data: Path

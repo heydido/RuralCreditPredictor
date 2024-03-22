@@ -4,7 +4,8 @@ from src.RuralCreditPredictor.logger import logging
 from src.RuralCreditPredictor.exception import CustomException
 from src.RuralCreditPredictor.entity.config_entity import (DataIngestionConfig,
                                                            DataValidationConfig,
-                                                           DataPreprocessingConfig)
+                                                           DataPreprocessingConfig,
+                                                           DataTransformationConfig)
 from src.RuralCreditPredictor.utils.common import read_yaml, create_directories
 
 
@@ -101,4 +102,28 @@ class ConfigurationManager:
 
         except Exception as e:
             logging.error(f"Error occurred while getting data preprocessing configuration!")
+            raise CustomException(e, sys)
+
+    def get_data_transformer_config(self) -> DataTransformationConfig:
+        try:
+            logging.info("Getting data transformation configuration:")
+
+            config = self.config.data_transformation
+
+            create_directories([config.root_dir])
+
+            data_transformation_config = DataTransformationConfig(
+                root_dir=config.root_dir,
+                preprocessed_file=config.preprocessed_file,
+                data_transformer=config.data_transformer,
+                train_data=config.train_data,
+                test_data=config.test_data
+            )
+
+            logging.info("Data transformation configuration loaded successfully!")
+
+            return data_transformation_config
+
+        except Exception as e:
+            logging.error(f"Error occurred while getting data transformation configuration!")
             raise CustomException(e, sys)
