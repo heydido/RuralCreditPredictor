@@ -18,7 +18,7 @@ class DataValidation:
             data = pd.read_csv(self.config.raw_file)
             all_cols = list(data.columns)
 
-            raw_schema = self.config.raw_schema_file.keys()
+            raw_schema = self.config.raw_schema.keys()
 
             for col in all_cols:
                 if col not in raw_schema:
