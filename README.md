@@ -1,8 +1,11 @@
 ![RuralCredit](RuralCredit.jpg)
+
+Photo by <a href="https://unsplash.com/@tomcchen?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Tom Chen</a> on <a href="https://unsplash.com/photos/woman-leaning-on-wall-jO1OyKR7s68?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+
 # What is RuralCredit?
 RuralCredit fosters economic empowerment in rural India by providing accessible financial services tailored to local needs. Through microfinance, agricultural loans, and financial literacy programs, it cultivates entrepreneurship, boosts agricultural productivity, and enhances livelihoods. RuralCredit aims to bridge the financial gap, unlocking the potential for sustainable development in rural communities.
 
----
+------------------------------------------------------------------------------------------------------------------------
 ## Setting Up the Project:
 1. Clone the repository
 2. Create a virtual environment using setup.sh:
