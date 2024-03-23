@@ -1,5 +1,5 @@
-from dataclasses import dataclass
 from pathlib import Path
+from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
@@ -41,3 +41,12 @@ class DataTransformationConfig:
     selected_features: list
     target_variable: str
     data_transformer: Path
+
+
+@dataclass(frozen=True)
+class ModelTrainingConfig:
+    root_dir: Path
+    model_params: dict
+    train_metrics: Path
+    test_metrics: Path
+    model: Path

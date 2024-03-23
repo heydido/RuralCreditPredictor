@@ -5,7 +5,8 @@ from src.RuralCreditPredictor.exception import CustomException
 from src.RuralCreditPredictor.entity.config_entity import (DataIngestionConfig,
                                                            DataValidationConfig,
                                                            DataPreprocessingConfig,
-                                                           DataTransformationConfig)
+                                                           DataTransformationConfig,
+                                                           ModelTrainingConfig)
 from src.RuralCreditPredictor.utils.common import read_yaml, create_directories
 
 
@@ -146,4 +147,32 @@ class ConfigurationManager:
         except Exception as e:
             if log:
                 logging.error(f"Error occurred while getting data transformation configuration!")
+            raise CustomException(e, sys)
+
+    def get_model_training_config(self, log=True) -> ModelTrainingConfig:
+        try:
+            if log:
+                logging.info("Getting model training configuration:")
+
+            config = self.config.model_training
+            model_params = self.params.RandomForestRegressor
+
+            create_directories([config.root_dir])
+
+            model_training_config = ModelTrainingConfig(
+                root_dir=config.root_dir,
+                model_params=model_params,
+                train_metrics=config.train_metrics,
+                test_metrics=config.test_metrics,
+                model=config.model
+            )
+
+            if log:
+                logging.info("Model training configuration loaded successfully!")
+
+            return model_training_config
+
+        except Exception as e:
+            if log:
+                logging.error(f"Error occurred while getting model training configuration!")
             raise CustomException(e, sys)
