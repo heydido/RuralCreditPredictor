@@ -29,3 +29,9 @@ model_training:
   train_metrics: artifacts/model_training/train_metrics.txt
   test_metrics: artifacts/model_training/test_metrics.txt
   model: artifacts/model_training/model.pkl
+
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+  model: artifacts/model_training/model.pkl
+  train_metrics: artifacts/model_evaluation/train_metrics.txt
+  test_metrics: artifacts/model_evaluation/test_metrics.txt

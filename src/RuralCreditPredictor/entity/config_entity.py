@@ -47,6 +47,12 @@ class DataTransformationConfig:
 class ModelTrainingConfig:
     root_dir: Path
     model_params: dict
+    model: Path
+
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    root_dir: Path
+    model: Path
     train_metrics: Path
     test_metrics: Path
-    model: Path

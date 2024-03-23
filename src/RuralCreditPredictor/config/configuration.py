@@ -6,7 +6,8 @@ from src.RuralCreditPredictor.entity.config_entity import (DataIngestionConfig,
                                                            DataValidationConfig,
                                                            DataPreprocessingConfig,
                                                            DataTransformationConfig,
-                                                           ModelTrainingConfig)
+                                                           ModelTrainingConfig,
+                                                           ModelEvaluationConfig)
 from src.RuralCreditPredictor.utils.common import read_yaml, create_directories
 
 
@@ -162,8 +163,6 @@ class ConfigurationManager:
             model_training_config = ModelTrainingConfig(
                 root_dir=config.root_dir,
                 model_params=model_params,
-                train_metrics=config.train_metrics,
-                test_metrics=config.test_metrics,
                 model=config.model
             )
 
@@ -175,4 +174,30 @@ class ConfigurationManager:
         except Exception as e:
             if log:
                 logging.error(f"Error occurred while getting model training configuration!")
+            raise CustomException(e, sys)
+
+    def get_model_evaluation_config(self, log=True) -> ModelEvaluationConfig:
+        try:
+            if log:
+                logging.info("Getting model evaluation configuration:")
+
+            config = self.config.model_evaluation
+
+            create_directories([config.root_dir])
+
+            model_evaluation_config = ModelEvaluationConfig(
+                root_dir=config.root_dir,
+                model=config.model,
+                train_metrics=config.train_metrics,
+                test_metrics=config.test_metrics
+            )
+
+            if log:
+                logging.info("Model evaluation configuration loaded successfully!")
+
+            return model_evaluation_config
+
+        except Exception as e:
+            if log:
+                logging.error(f"Error occurred while getting model evaluation configuration!")
             raise CustomException(e, sys)
