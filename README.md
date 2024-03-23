@@ -16,7 +16,8 @@ RuralCredit fosters economic empowerment in rural India by providing accessible 
     ```
     source activate ./venv
     ``` 
-   
+------------------------------------------------------------------------------------------------------------------------
+
 ## Workflow:
 1. Update config: `config/config.yaml`
 2. Update raw/processed data schema: `raw_schema.yaml/processed_schema.yaml` (if needed)
@@ -27,3 +28,9 @@ RuralCredit fosters economic empowerment in rural India by providing accessible 
 7. Update the pipeline: `src/RuralCreditPredictor/pipeline`
 8. Update entrypoint: `main.py`
 9. Update application: `app.py`
+
+------------------------------------------------------------------------------------------------------------------------
+Owner: [Aashish jaiswal](https://www.linktr.ee/heydido)
+------------------------------------------------------------------------------------------------------------------------
+
+This project is created using a public template I created: [MLProjectTemplate](https://github.com/heydido/MLProjectTemplate)
