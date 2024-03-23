@@ -30,7 +30,7 @@ RuralCredit fosters economic empowerment in rural India by providing accessible 
 9. Update application: `app.py`
 
 ------------------------------------------------------------------------------------------------------------------------
-Owner: [Aashish jaiswal](https://www.linktr.ee/heydido)
+Owner: [Aashish Jaiswal](https://www.linktr.ee/heydido)
 ------------------------------------------------------------------------------------------------------------------------
 
 This project is created using a public template I created: [MLProjectTemplate](https://github.com/heydido/MLProjectTemplate)
