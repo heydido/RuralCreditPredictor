@@ -7,7 +7,8 @@ from src.RuralCreditPredictor.entity.config_entity import (DataIngestionConfig,
                                                            DataPreprocessingConfig,
                                                            DataTransformationConfig,
                                                            ModelTrainingConfig,
-                                                           ModelEvaluationConfig)
+                                                           ModelEvaluationConfig,
+                                                           PredictionConfig)
 from src.RuralCreditPredictor.utils.common import read_yaml, create_directories
 
 
@@ -200,4 +201,30 @@ class ConfigurationManager:
         except Exception as e:
             if log:
                 logging.error(f"Error occurred while getting model evaluation configuration!")
+            raise CustomException(e, sys)
+
+    def get_prediction_config(self, log=True) -> PredictionConfig:
+        try:
+            if log:
+                logging.info("Getting prediction configuration:")
+
+            config = self.config.prediction
+            selected_features = self.processed_schema.selected_features
+
+            create_directories([config.root_dir])
+
+            prediction_config = PredictionConfig(
+                root_dir=config.root_dir,
+                data_transformer=config.data_transformer,
+                model=config.model
+            )
+
+            if log:
+                logging.info("Prediction configuration loaded successfully!")
+
+            return prediction_config
+
+        except Exception as e:
+            if log:
+                logging.error(f"Error occurred while getting prediction configuration!")
             raise CustomException(e, sys)

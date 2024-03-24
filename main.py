@@ -7,7 +7,10 @@ from src.RuralCreditPredictor.pipeline.data_preprocessing import DataPreprocessi
 from src.RuralCreditPredictor.pipeline.data_transformation import DataTransformationPipeline
 from src.RuralCreditPredictor.pipeline.model_training import ModelTrainingPipeline
 from src.RuralCreditPredictor.pipeline.model_evaluation import ModelEvaluationPipeline
+from src.RuralCreditPredictor.pipeline.predict import PredictionPipeline
 
+
+logging.info(">>>>>> Rural Credit Predictor Pipeline started <<<<<<\n")
 
 STAGE_NAME = "Data Ingestion"
 
@@ -92,7 +95,23 @@ try:
     model_evaluator = ModelEvaluationPipeline()
     model_evaluator.main()
 
-    logging.info(f">>>>>> stage '{STAGE_NAME}' completed <<<<<<")
+    logging.info(f">>>>>> stage '{STAGE_NAME}' completed <<<<<<\n")
+
+except Exception as e:
+    logging.error(f"Error occurred while running {STAGE_NAME}!")
+    raise CustomException(e, sys)
+
+
+STAGE_NAME = "Prediction"
+
+try:
+    logging.info(f">>>>>> stage '{STAGE_NAME}' started <<<<<<")
+
+    predictor = PredictionPipeline()
+    predictor.main()
+
+    logging.info(f">>>>>> stage '{STAGE_NAME}' completed <<<<<<\n")
+    logging.info(">>>>>> Rural Credit Predictor Pipeline completed <<<<<<")
 
 except Exception as e:
     logging.error(f"Error occurred while running {STAGE_NAME}!")

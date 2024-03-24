@@ -56,3 +56,10 @@ class ModelEvaluationConfig:
     model: Path
     train_metrics: Path
     test_metrics: Path
+
+
+@dataclass(frozen=True)
+class PredictionConfig:
+    root_dir: Path
+    data_transformer: Path
+    model: Path
