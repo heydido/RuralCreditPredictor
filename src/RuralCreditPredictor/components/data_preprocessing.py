@@ -2,6 +2,7 @@ import sys
 import pandas as pd
 from src.RuralCreditPredictor.logger import logging
 from src.RuralCreditPredictor.exception import CustomException
+from src.RuralCreditPredictor.config.configuration import ConfigurationManager
 from src.RuralCreditPredictor.entity.config_entity import DataPreprocessingConfig
 
 
@@ -138,3 +139,14 @@ class DataPreprocessing:
         except Exception as e:
             logging.error(f"Error occurred while exporting preprocessed data!")
             raise CustomException(e, sys)
+
+
+if __name__ == '__main__':
+    config_manager = ConfigurationManager()
+    data_preprocessing_config = config_manager.get_data_preprocessing_config()
+    data_preprocessing = DataPreprocessing(config=data_preprocessing_config)
+    data_preprocessing.impute_missing_values()
+    data_preprocessing.drop_under_and_above_age()
+    data_preprocessing.drop_outliers()
+    data_preprocessing.get_preprocessed_data()
+    data_preprocessing.save_preprocessed_data()

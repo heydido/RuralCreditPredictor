@@ -6,6 +6,7 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from src.RuralCreditPredictor.logger import logging
 from src.RuralCreditPredictor.exception import CustomException
+from src.RuralCreditPredictor.config.configuration import ConfigurationManager
 from src.RuralCreditPredictor.entity.config_entity import DataTransformationConfig
 
 
@@ -125,3 +126,13 @@ class DataTransformation:
         except Exception as e:
             logging.error(f"Error occurred while saving data transformer!")
             raise CustomException(e, sys)
+
+
+if __name__ == '__main__':
+    config_manager = ConfigurationManager()
+    data_transformation_config = config_manager.get_data_transformer_config()
+    data_transformation = DataTransformation(config=data_transformation_config)
+    data_transformation.split_data()
+    data_transformation.get_data_transformer()
+    data_transformation.get_transformed_data()
+    data_transformation.save_data_transformer()

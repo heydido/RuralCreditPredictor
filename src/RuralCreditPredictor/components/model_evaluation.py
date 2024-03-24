@@ -92,3 +92,10 @@ class ModelEvaluator:
         except Exception as e:
             logging.error(f"Error occurred while getting model metrics!")
             raise CustomException(e, sys)
+
+
+if __name__ == '__main__':
+    config_manager = ConfigurationManager()
+    model_evaluation_config = config_manager.get_model_evaluation_config()
+    model_evaluator = ModelEvaluator(config=model_evaluation_config)
+    model_evaluator.get_model_metrics()

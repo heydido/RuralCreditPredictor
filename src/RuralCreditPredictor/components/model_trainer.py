@@ -56,3 +56,10 @@ class ModelTrainer:
         except Exception as e:
             logging.error(f"Could not save model, error occurred while training model!")
             raise CustomException(e, sys)
+
+
+if __name__ == '__main__':
+    config_manager = ConfigurationManager()
+    model_training_config = config_manager.get_model_training_config()
+    model_trainer = ModelTrainer(config=model_training_config)
+    model_trainer.train_model()

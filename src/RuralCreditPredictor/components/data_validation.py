@@ -2,6 +2,7 @@ import sys
 import pandas as pd
 from src.RuralCreditPredictor.logger import logging
 from src.RuralCreditPredictor.exception import CustomException
+from src.RuralCreditPredictor.config.configuration import ConfigurationManager
 from src.RuralCreditPredictor.entity.config_entity import DataValidationConfig
 
 
@@ -40,3 +41,10 @@ class DataValidation:
         except Exception as e:
             logging.error(f"Error occurred while validating schema of raw data file!")
             raise CustomException(e, sys)
+
+
+if __name__ == '__main__':
+    config_manager = ConfigurationManager()
+    data_validation_config = config_manager.get_data_validation_config()
+    data_validation = DataValidation(config=data_validation_config)
+    data_validation.validate_schema()
