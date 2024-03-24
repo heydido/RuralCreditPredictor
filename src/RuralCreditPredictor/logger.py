@@ -27,5 +27,6 @@ logger.setLevel(logging.INFO)
 logger.addHandler(file_handler)
 logger.addHandler(stream_handler)
 
+
 if __name__ == '__main__':
     logging.info('Logging has started!')
