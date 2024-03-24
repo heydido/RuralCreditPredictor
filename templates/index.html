@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rural Credit Predictor</title>
+</head>
+<body>
+    <h1>Rural Credit Predictor</h1>
+    <form action="/predict" method="post">
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" required><br>
+
+        <label for="sex">Sex:</label><br>
+        <select id="sex" name="sex" required>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+            <option value="TG">Transgender</option>
+        </select><br>
+
+        <label for="annual_income">Annual Income:</label><br>
+        <input type="number" id="annual_income" name="annual_income" required><br>
+
+        <label for="monthly_expenses">Monthly Expenses:</label><br>
+        <input type="number" id="monthly_expenses" name="monthly_expenses" required><br>
+
+        <label for="old_dependents">Old Dependents:</label><br>
+        <input type="number" id="old_dependents" name="old_dependents" required><br>
+
+        <label for="young_dependents">Young Dependents:</label><br>
+        <input type="number" id="young_dependents" name="young_dependents" required><br>
+
+        <label for="home_ownership">Home Ownership:</label><br>
+        <input type="number" id="home_ownership" name="home_ownership" required><br>
+
+        <label for="type_of_house">Type of House:</label><br>
+        <input type="text" id="type_of_house" name="type_of_house" required><br>
+
+        <label for="occupants_count">Occupants Count:</label><br>
+        <input type="number" id="occupants_count" name="occupants_count" required><br>
+
+        <label for="house_area">House Area:</label><br>
+        <input type="number" id="house_area" name="house_area" required><br>
+
+        <label for="loan_tenure">Loan Tenure:</label><br>
+        <input type="number" id="loan_tenure" name="loan_tenure" required><br>
+
+        <label for="loan_installments">Loan Installments:</label><br>
+        <input type="number" id="loan_installments" name="loan_installments" required><br>
+
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>
