@@ -1,9 +1,18 @@
-![RuralCredit](RuralCredit.jpg)
+![RuralCredit](static/assets/img/RuralCredit.jpg)
 
 Photo by <a href="https://unsplash.com/@tomcchen?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Tom Chen</a> on <a href="https://unsplash.com/photos/woman-leaning-on-wall-jO1OyKR7s68?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 
 # What is RuralCredit?
-RuralCredit fosters economic empowerment in rural India by providing accessible financial services tailored to local needs. Through microfinance, agricultural loans, and financial literacy programs, it cultivates entrepreneurship, boosts agricultural productivity, and enhances livelihoods. RuralCredit aims to bridge the financial gap, unlocking the potential for sustainable development in rural communities.
+<p>RuralCredit is a financial service provided to individuals and businesses in rural areas. It provides loan that help support agricultural activities, rural development, and livelihoods in rural communities.</p>
+<p>RuralCredit plays a crucial role in empowering farmers, small businesses, and rural entrepreneurs by providing them with the necessary funds to invest in their operations, purchase equipment, and improve their productivity. It helps bridge the gap between the financial needs of rural communities and the availability of financial resources.</p>
+<p>By facilitating access to credit, rural credit contributes to the overall economic growth and development of rural areas, reduces poverty, and enhances the standard of living for rural populations.</p>
+
+------------------------------------------------------------------------------------------------------------------------
+
+## Working Screenshots:
+![1](static/assets/img/1.png)
+![2](static/assets/img/2.png)
+![3](static/assets/img/3.png)
 
 ------------------------------------------------------------------------------------------------------------------------
 ## Setting Up the Project:
