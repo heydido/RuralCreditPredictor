@@ -61,7 +61,7 @@ def predict():
             config_manager = ConfigurationManager()
             prediction_config = config_manager.get_prediction_config()
             predictor = Predictor(config=prediction_config)
-            loan_amount = predictor.predict(input_data)
+            loan_amount = int(predictor.predict(input_data))
 
             logging.info(f"Predicted loan amount: {loan_amount}")
 
