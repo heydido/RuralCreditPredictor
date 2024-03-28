@@ -161,3 +161,6 @@ cython_debug/
 
 # Logs to ingnore
 logs/
+
+# Exclude mlruns
+mlruns/
