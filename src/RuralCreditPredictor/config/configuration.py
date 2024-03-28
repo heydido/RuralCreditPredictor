@@ -164,7 +164,8 @@ class ConfigurationManager:
             model_training_config = ModelTrainingConfig(
                 root_dir=config.root_dir,
                 model_params=model_params,
-                model=config.model
+                experiment_name=config.experiment_name,
+                latest_run_id=config.latest_run_id
             )
 
             if log:
@@ -188,7 +189,8 @@ class ConfigurationManager:
 
             model_evaluation_config = ModelEvaluationConfig(
                 root_dir=config.root_dir,
-                model=config.model,
+                latest_run_id=config.latest_run_id,
+                experiment_name=config.experiment_name,
                 train_metrics=config.train_metrics,
                 test_metrics=config.test_metrics
             )
@@ -209,14 +211,14 @@ class ConfigurationManager:
                 logging.info("Getting prediction configuration:")
 
             config = self.config.prediction
-            selected_features = self.processed_schema.selected_features
 
             create_directories([config.root_dir])
 
             prediction_config = PredictionConfig(
                 root_dir=config.root_dir,
-                data_transformer=config.data_transformer,
-                model=config.model
+                latest_run_id=config.latest_run_id,
+                experiment_name=config.experiment_name,
+                data_transformer=config.data_transformer
             )
 
             if log:

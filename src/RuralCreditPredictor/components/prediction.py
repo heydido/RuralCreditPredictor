@@ -2,6 +2,9 @@ import json
 import sys
 import pickle
 import pandas as pd
+
+import mlflow
+
 from src.RuralCreditPredictor.logger import logging
 from src.RuralCreditPredictor.exception import CustomException
 from src.RuralCreditPredictor.entity.config_entity import PredictionConfig
@@ -35,9 +38,15 @@ class Predictor:
         try:
             logging.info("> Loading the model:")
 
-            model_path = self.config.model
-            with open(model_path, 'rb') as file:
-                model = pickle.load(file)
+            logging.info(f"Loading run_id to track model metrics:")
+            with open(self.config.latest_run_id, 'r') as file:
+                run_id = file.read().strip()
+                logging.info(f"run_id: {run_id}")
+
+            experiment_id = mlflow.get_experiment_by_name(self.config.experiment_name).experiment_id
+            model_path = f"mlruns/{experiment_id}/{run_id}/artifacts/model"
+
+            model = mlflow.sklearn.load_model(model_path)
 
             logging.info("Model loaded successfully!")
 

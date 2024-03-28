@@ -47,13 +47,15 @@ class DataTransformationConfig:
 class ModelTrainingConfig:
     root_dir: Path
     model_params: dict
-    model: Path
+    experiment_name: str
+    latest_run_id: Path
 
 
 @dataclass(frozen=True)
 class ModelEvaluationConfig:
     root_dir: Path
-    model: Path
+    latest_run_id: Path
+    experiment_name: str
     train_metrics: Path
     test_metrics: Path
 
@@ -61,5 +63,6 @@ class ModelEvaluationConfig:
 @dataclass(frozen=True)
 class PredictionConfig:
     root_dir: Path
+    latest_run_id: Path
+    experiment_name: str
     data_transformer: Path
-    model: Path

@@ -1,5 +1,5 @@
 RandomForestRegressor:
-  criterion: absolute_error
+  criterion: squared_error
   max_depth: null
   max_features: null
   min_samples_leaf: 2

@@ -25,18 +25,18 @@ data_transformation:
 
 model_training:
   root_dir: artifacts/model_training
-  preprocessed_file: artifacts/data_preprocessing/processed_data.csv
-  train_metrics: artifacts/model_training/train_metrics.txt
-  test_metrics: artifacts/model_training/test_metrics.txt
-  model: artifacts/model_training/model.pkl
+  experiment_name: RandomForestRegressor
+  latest_run_id: artifacts/model_training/latest_run_id.txt
 
 model_evaluation:
   root_dir: artifacts/model_evaluation
-  model: artifacts/model_training/model.pkl
+  latest_run_id: artifacts/model_training/latest_run_id.txt
+  experiment_name: RandomForestRegressor
   train_metrics: artifacts/model_evaluation/train_metrics.txt
   test_metrics: artifacts/model_evaluation/test_metrics.txt
 
 prediction:
   root_dir: artifacts/prediction
+  latest_run_id: artifacts/model_training/latest_run_id.txt
+  experiment_name: RandomForestRegressor
   data_transformer: artifacts/data_transformation/data_transformer.pkl
-  model: artifacts/model_training/model.pkl

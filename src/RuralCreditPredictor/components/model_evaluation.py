@@ -1,6 +1,6 @@
 import sys
 import json
-import pickle
+import mlflow
 import numpy as np
 from sklearn.metrics import mean_absolute_error, mean_squared_error, mean_absolute_percentage_error
 from src.RuralCreditPredictor.logger import logging
@@ -38,10 +38,14 @@ class ModelEvaluator:
         try:
             logging.info("> Getting model metrics:")
 
-            model_path = self.config.model
+            logging.info(f"Loading run_id to track model metrics:")
+            with open(self.config.latest_run_id, 'r') as file:
+                run_id = file.read().strip()
+                logging.info(f"run_id: {run_id}")
 
-            with open(model_path, 'rb') as file:
-                model = pickle.load(file)
+            experiment_id = mlflow.get_experiment_by_name(self.config.experiment_name).experiment_id
+            model_path = f"mlruns/{experiment_id}/{run_id}/artifacts/model"
+            model = mlflow.sklearn.load_model(model_path)
 
             config = ConfigurationManager()
             model_training_config = config.get_model_training_config(log=False)
@@ -53,9 +57,19 @@ class ModelEvaluator:
             y_pred_test = model.predict(x_test)
 
             mae_train, mape_train, mse_train, rmse_train = self.evaluate_model(y_train, y_pred_train, log=False)
+            with mlflow.start_run(run_id=run_id):
+                mlflow.log_metric("mae_train", mae_train)
+                mlflow.log_metric("mape_train", mape_train)
+                mlflow.log_metric("mse_train", mse_train)
+                mlflow.log_metric("rmse_train", rmse_train)
             logging.info(f"Train metrics: MAE: {mae_train}, MAPE: {mape_train}, MSE: {mse_train}, RMSE: {rmse_train}")
 
             mae_test, mape_test, mse_test, rmse_test = self.evaluate_model(y_test, y_pred_test, log=False)
+            with mlflow.start_run(run_id=run_id):
+                mlflow.log_metric("mae_test", mae_test)
+                mlflow.log_metric("mape_test", mape_test)
+                mlflow.log_metric("mse_test", mse_test)
+                mlflow.log_metric("rmse_test", rmse_test)
             logging.info(f"Test metrics: MAE: {mae_test}, MAPE: {mape_test}, MSE: {mse_test}, RMSE: {rmse_test}")
 
             train_metrics = json.dumps(
