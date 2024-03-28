@@ -6,7 +6,6 @@ scikit-learn
 xgboost
 Flask
 streamlit
-rich
 jupyter
 python-box
 ensure
