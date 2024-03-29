@@ -64,7 +64,7 @@ class ModelTrainer:
 
                 logging.info("Logged model parameters successfully! Training Started....")
 
-                rfr = RandomForestRegressor(**model_params)
+                rfr = RandomForestRegressor(**model_params, verbose=2, n_jobs=-1)
                 rfr.fit(x_train, y_train)
 
                 logging.info("Model trained successfully!")
