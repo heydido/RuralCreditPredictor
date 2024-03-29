@@ -2,6 +2,7 @@ import os
 import sys
 
 import mlflow
+import dagshub
 from urllib.parse import urlparse
 
 from sklearn.ensemble import RandomForestRegressor
@@ -43,6 +44,9 @@ class ModelTrainer:
 
             x_train, x_test, y_train, y_test = self.get_data()
 
+            # Initialize DagsHub
+            dagshub.init("RuralCreditPredictor", "heydido", mlflow=True)
+
             # Set the experiment name
             mlflow.set_experiment(self.config.experiment_name)
 
@@ -63,20 +67,30 @@ class ModelTrainer:
 
                 logging.info("Model trained successfully!")
 
-                logging.info("> Saving model:")
-
-                # TODO: Saving the model to a remote server
-                # remote_server_uri = "https://dagshub.com/heydido/RuralCreditPredictor.mlflow"
-                # mlflow.set_tracking_uri(remote_server_uri)
+                # Comment below two lines to run experiment/save model locally
+                remote_server_uri = "https://dagshub.com/heydido/RuralCreditPredictor.mlflow"
+                mlflow.set_tracking_uri(remote_server_uri)
 
                 tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
-
                 if tracking_url_type_store != "file":
-                    mlflow.sklearn.log_model(
-                        rfr, "model", registered_model_name="RandomForestModel"
-                    )
+                    logging.info("> Saving model - Mode: Remote")
+
+                    mlflow.sklearn.log_model(rfr, "model", registered_model_name="RandomForestModel")
+
+                    model_uri = mlflow.get_artifact_uri("model")
+
+                    logging.info(f"Model saved successfully at: {model_uri}")
+
                 else:
+                    logging.info("> Saving model - Mode: Local")
+
                     mlflow.sklearn.log_model(rfr, "model")
+
+                    run_id = run.info.run_id
+                    experiment_id = mlflow.get_experiment_by_name(self.config.experiment_name).experiment_id
+                    model_path = f"mlruns/{experiment_id}/{run_id}/artifacts/model"
+
+                    logging.info(f"Model saved successfully at: {model_path}!")
 
                 # Save run id to track evaluation metrics
                 logging.info("> Saving run ID:")
