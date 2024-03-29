@@ -15,7 +15,8 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/train',methods=['GET'])
+# TODO: Fix the training route
+@app.route('/train', methods=['GET'])
 def training():
     os.system("python main.py")
     return "Training Successful!"
