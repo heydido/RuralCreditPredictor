@@ -50,7 +50,7 @@ class ModelEvaluator:
                 tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
                 if tracking_url_type_store != "file":
-                    model = mlflow.pyfunc.load_model("models:/RandomForestModel/None")  # None to pull the latest model
+                    model = mlflow.sklearn.load_model("models:/RandomForestModel/None")  # None to pull the latest model
 
                 else:
                     experiment_id = mlflow.get_experiment_by_name(self.config.experiment_name).experiment_id

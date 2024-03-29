@@ -4,6 +4,7 @@ import pickle
 import pandas as pd
 
 import mlflow
+from urllib.parse import urlparse
 
 from src.RuralCreditPredictor.logger import logging
 from src.RuralCreditPredictor.exception import CustomException
@@ -31,30 +32,49 @@ class Predictor:
             return data_transformer
 
         except Exception as e:
-            logging.error(f"Error in loading the data transformer: {str(e)}")
-            raise CustomException("Error in loading the data transformer")
+            logging.error(f"Error in loading the data transformer!")
+            raise CustomException(e, sys)
 
     def load_model(self):
         try:
             logging.info("> Loading the model:")
 
-            logging.info(f"Loading run_id to track model metrics:")
-            with open(self.config.latest_run_id, 'r') as file:
-                run_id = file.read().strip()
-                logging.info(f"run_id: {run_id}")
+            # Note: Comment below two lines to run do prediction using a local model
+            remote_server_uri = "https://dagshub.com/heydido/RuralCreditPredictor.mlflow"
+            mlflow.set_tracking_uri(remote_server_uri)
 
-            experiment_id = mlflow.get_experiment_by_name(self.config.experiment_name).experiment_id
-            model_path = f"mlruns/{experiment_id}/{run_id}/artifacts/model"
+            experiment_name = self.config.experiment_name
+            experiment_id = mlflow.get_experiment_by_name(experiment_name).experiment_id
 
-            model = mlflow.sklearn.load_model(model_path)
+            runs = mlflow.search_runs(experiment_ids=experiment_id)
+            metric_name = "mape_test"
+            best_run = runs.sort_values(by=['metrics.' + metric_name], ascending=True).iloc[0]
+            run_id = best_run.run_id
 
-            logging.info("Model loaded successfully!")
+            tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+            if tracking_url_type_store != "file":
+                logging.info("Mode - Remote")
 
-            return model
+                model = mlflow.sklearn.load_model(f"runs:/{run_id}/model")
+
+                logging.info(f"Model loaded successfully. experiment_id: {experiment_id}, run_id: {run_id}")
+
+                return model
+
+            else:
+                logging.info("Mode - Local")
+
+                model_path = f"mlruns/{experiment_id}/{run_id}/artifacts/model"
+
+                model = mlflow.sklearn.load_model(model_path)
+
+                logging.info(f"Model loaded successfully. experiment_id: {experiment_id}, run_id: {run_id}")
+
+                return model
 
         except Exception as e:
-            logging.error(f"Error in loading the model: {str(e)}")
-            raise CustomException("Error in loading the model")
+            logging.error(f"Error in loading the model!")
+            raise CustomException(e, sys)
 
     def predict(self, prediction_datapoint):
         try:
@@ -73,7 +93,7 @@ class Predictor:
 
         except Exception as e:
             logging.error(f"Error in predicting prediction!")
-            raise CustomException(e,sys)
+            raise CustomException(e, sys)
 
 
 class CustomData:
