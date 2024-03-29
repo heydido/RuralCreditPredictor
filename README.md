@@ -39,6 +39,24 @@ Photo by <a href="https://unsplash.com/@tomcchen?utm_content=creditCopyText&utm_
 9. Update application: `app.py`
 
 ------------------------------------------------------------------------------------------------------------------------
+
+## MLFlow Setup:
+Commands to set up the MLFlow environment:
+1. MLFlow Tracking URI:
+   ```
+   export MLFLOW_TRACKING_URI=https://dagshub.com/heydido/RuralCreditPredictor.mlflow
+   ```
+2. MLFlow Tracking Username:
+   ```
+   export MLFLOW_TRACKING_USERNAME=heydido
+   ```
+3. MLFlow Tracking Password:
+   ```
+    export MLFLOW_TRACKING_PASSWORD=********
+    ```
+Get these from the DAGsHub server.
+
+------------------------------------------------------------------------------------------------------------------------
 Owner: [Aashish Jaiswal](https://www.linktr.ee/heydido)
 ------------------------------------------------------------------------------------------------------------------------
 
