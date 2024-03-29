@@ -45,6 +45,7 @@ class ModelTrainer:
             x_train, x_test, y_train, y_test = self.get_data()
 
             # Initialize DagsHub
+            # Note: Comment below line to run experiment/save model locally
             dagshub.init("RuralCreditPredictor", "heydido", mlflow=True)
 
             # Set the experiment name
@@ -69,7 +70,7 @@ class ModelTrainer:
 
                 logging.info("Model trained successfully!")
 
-                # Comment below two lines to run experiment/save model locally
+                # Note: Comment below two lines to run experiment/save model locally
                 remote_server_uri = "https://dagshub.com/heydido/RuralCreditPredictor.mlflow"
                 mlflow.set_tracking_uri(remote_server_uri)
 
