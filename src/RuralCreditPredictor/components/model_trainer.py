@@ -62,6 +62,8 @@ class ModelTrainer:
                 mlflow.log_param("n_estimators", model_params.n_estimators)
                 mlflow.log_param("random_state", model_params.random_state)
 
+                logging.info("Logged model parameters successfully! Training Started....")
+
                 rfr = RandomForestRegressor(**model_params)
                 rfr.fit(x_train, y_train)
 
