@@ -104,12 +104,12 @@ class ModelTrainer:
                 with open(run_id_path, "w") as f:
                     f.write(run_id)
 
-                logging.info(f"Run ID saved successfully at: {run_id_path}")
+                logging.info(f"Run ID: {run_id} saved successfully at: {run_id_path}")
 
-                experiment_id = mlflow.get_experiment_by_name(self.config.experiment_name).experiment_id
-                model_path = f"mlruns/{experiment_id}/{run_id}/artifacts/model"
+            # End the run
+            mlflow.end_run()
 
-                logging.info(f"Model saved successfully at: {model_path}!")
+            logging.info("Run ended successfully!")
 
         except Exception as e:
             logging.error(f"Could not save model, error occurred while training model")
