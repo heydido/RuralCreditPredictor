@@ -2,12 +2,11 @@ import sys
 from src.RuralCreditPredictor.logger import logging
 from src.RuralCreditPredictor.exception import CustomException
 from src.RuralCreditPredictor.pipeline.data_ingestion import DataIngestionPipeline
-from src.RuralCreditPredictor.pipeline.data_vaildation import DataValidationPipeline
+from src.RuralCreditPredictor.pipeline.data_validation import DataValidationPipeline
 from src.RuralCreditPredictor.pipeline.data_preprocessing import DataPreprocessingPipeline
 from src.RuralCreditPredictor.pipeline.data_transformation import DataTransformationPipeline
 from src.RuralCreditPredictor.pipeline.model_training import ModelTrainingPipeline
 from src.RuralCreditPredictor.pipeline.model_evaluation import ModelEvaluationPipeline
-from src.RuralCreditPredictor.pipeline.predict import PredictionPipeline
 
 
 logging.info(">>>>>> Rural Credit Predictor Pipeline started <<<<<<\n")
