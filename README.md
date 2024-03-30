@@ -71,7 +71,7 @@ Commands to set up the DVC environment:
    ```
    dvc repro
    ```
-   `Note:` "dvc repro" will fail if you have exported the MLFlow variables as explained in the MLFlow Setup section. 
+   `Note:` "dvc repro" will fail if you haven't exported the MLFlow variables as explained in the MLFlow Setup section. 
 
 4. Track each experiment changes with git:
     ```
