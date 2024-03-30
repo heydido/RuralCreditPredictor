@@ -3,7 +3,6 @@ pandas
 seaborn
 matplotlib
 scikit-learn
-xgboost
 Flask
 streamlit
 jupyter
@@ -14,3 +13,5 @@ joblib
 dvc
 mlflow
 dagshub
+
+-e .
