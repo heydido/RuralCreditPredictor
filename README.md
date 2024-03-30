@@ -88,8 +88,13 @@ Commands to set up the DVC environment:
     ```
     dvc push
     ```
+   
+## DVC DAG:
+![1](static/assets/img/dvc_dag.png)
 
-## Data Pipeline:
+------------------------------------------------------------------------------------------------------------------------
+
+## Complete Data Pipeline:
 ![1](static/assets/img/data_pipeline.png)
 
 DAGsHub: [RuralCreditPredictor](https://dagshub.com/heydido/RuralCreditPredictor)
