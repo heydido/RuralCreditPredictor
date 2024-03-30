@@ -164,3 +164,6 @@ logs/
 
 # Exclude mlruns
 mlruns/
+
+# Exclude artifacts
+artifacts/
