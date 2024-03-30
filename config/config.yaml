@@ -36,7 +36,6 @@ model_evaluation:
   test_metrics: artifacts/model_evaluation/test_metrics.txt
 
 prediction:
-  root_dir: artifacts/prediction
   latest_run_id: artifacts/model_training/latest_run_id.txt
   experiment_name: RandomForestRegressor
   data_transformer: artifacts/data_transformation/data_transformer.pkl

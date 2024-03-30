@@ -212,10 +212,7 @@ class ConfigurationManager:
 
             config = self.config.prediction
 
-            create_directories([config.root_dir])
-
             prediction_config = PredictionConfig(
-                root_dir=config.root_dir,
                 latest_run_id=config.latest_run_id,
                 experiment_name=config.experiment_name,
                 data_transformer=config.data_transformer

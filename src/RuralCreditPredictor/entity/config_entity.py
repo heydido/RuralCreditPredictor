@@ -62,7 +62,6 @@ class ModelEvaluationConfig:
 
 @dataclass(frozen=True)
 class PredictionConfig:
-    root_dir: Path
     latest_run_id: Path
     experiment_name: str
     data_transformer: Path
