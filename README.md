@@ -97,7 +97,7 @@ Commands to set up the DVC environment:
 ## Complete Data Pipeline:
 ![1](static/assets/img/data_pipeline.png)
 
-DAGsHub: [RuralCreditPredictor](https://dagshub.com/heydido/RuralCreditPredictor)
+for better clarity, visit the DAGsHub repo: [RuralCreditPredictor](https://dagshub.com/heydido/RuralCreditPredictor)
 
 ------------------------------------------------------------------------------------------------------------------------
 Owner: [Aashish Jaiswal](https://www.linktr.ee/heydido)
