@@ -57,7 +57,7 @@ class Predictor:
 
                 model = mlflow.sklearn.load_model(f"runs:/{run_id}/model")
 
-                logging.info(f"Model loaded successfully. experiment_id: {experiment_id}, run_id: {run_id}")
+                logging.info(f"Best model loaded successfully. experiment_id: {experiment_id}, run_id: {run_id}")
 
                 return model
 
