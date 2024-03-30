@@ -57,6 +57,44 @@ Commands to set up the MLFlow environment:
 Get these from the DAGsHub server.
 
 ------------------------------------------------------------------------------------------------------------------------
+
+## DVC Setup:
+Commands to set up the DVC environment:
+
+1. Initialize DVC:
+   ```
+   dvc init
+   ```
+2. Write the DVC file: `dvc.yaml`
+
+3. Run the DVC pipeline:
+   ```
+   dvc repro
+   ```
+   `Note:` "dvc repro" will fail if you have exported the MLFlow variables as explained in the MLFlow Setup section. 
+
+4. Track each experiment changes with git:
+    ```
+    git add .
+    git commit -m "DVC: <message>"
+    git push origin main
+    ```
+5. Add DVC Remote (one-time):
+    ```
+    dvc remote add origin s3://dvc
+   dvc remote modify origin endpointurl https://dagshub.com/heydido/RuralCreditPredictor.s3
+    ```
+6. Push the DVC changes:
+    ```
+    dvc push
+    ```
+
+## Data Pipeline:
+![1](static/assets/img/data_pipeline.png)
+
+DAGsHub: [RuralCreditPredictor](https://dagshub.com/heydido/RuralCreditPredictor)
+
+------------------------------------------------------------------------------------------------------------------------
 Owner: [Aashish Jaiswal](https://www.linktr.ee/heydido)
 ------------------------------------------------------------------------------------------------------------------------
 
