@@ -50,6 +50,7 @@ class Predictor:
             metric_name = "mape_test"
             best_run = runs.sort_values(by=['metrics.' + metric_name], ascending=True).iloc[0]
             run_id = best_run.run_id
+            run_name = runs[run_id == runs.run_id]["tags.mlflow.runName"].values[0]
 
             tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
             if tracking_url_type_store != "file":
@@ -57,7 +58,12 @@ class Predictor:
 
                 model = mlflow.sklearn.load_model(f"runs:/{run_id}/model")
 
-                logging.info(f"Best model loaded successfully. experiment_id: {experiment_id}, run_id: {run_id}")
+                logging.info(
+                    f"Best model loaded successfully with following info: \n"
+                    f" - experiment_id: {experiment_id} \n"
+                    f" - run_id: {run_id} \n"
+                    f" - run_name: {run_name}"
+                )
 
                 return model
 
