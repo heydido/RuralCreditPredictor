@@ -1,0 +1,142 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/RuralCreditPredictor/pipeline/data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: d46a998245ceedac788c7b58197fc0e6
+      size: 1533
+    - path: src/RuralCreditPredictor/pipeline/data_ingestion.py
+      hash: md5
+      md5: 43d4ce08374ddcfb70777396e6d3236b
+      size: 1111
+    outs:
+    - path: artifacts/data_ingestion/RuralCreditData.csv
+      hash: md5
+      md5: 08d40b5050c0fec51009cd72a90a814f
+      size: 4165680
+    - path: artifacts/data_ingestion/RuralCreditData.zip
+      hash: md5
+      md5: e3c52ab52ea128d439910076bc299c69
+      size: 552261
+  data_validation:
+    cmd: python src/RuralCreditPredictor/pipeline/data_validation.py
+    deps:
+    - path: artifacts/data_ingestion/RuralCreditData.csv
+      hash: md5
+      md5: 08d40b5050c0fec51009cd72a90a814f
+      size: 4165680
+    - path: config/config.yaml
+      hash: md5
+      md5: d46a998245ceedac788c7b58197fc0e6
+      size: 1533
+    - path: raw_schema.yaml
+      hash: md5
+      md5: dfbe888e32149f55dc418fcf15af2c95
+      size: 574
+    - path: src/RuralCreditPredictor/pipeline/data_validation.py
+      hash: md5
+      md5: 9e74feb2f414fe8775af65d71628ae6b
+      size: 1069
+    outs:
+    - path: artifacts/data_validation/status.txt
+      hash: md5
+      md5: 86e6a2f694c57a675b3e2da6b95ff9ba
+      size: 23
+  data_preprocessing:
+    cmd: python src/RuralCreditPredictor/pipeline/data_preprocessing.py
+    deps:
+    - path: artifacts/data_ingestion/RuralCreditData.csv
+      hash: md5
+      md5: 08d40b5050c0fec51009cd72a90a814f
+      size: 4165680
+    - path: config/config.yaml
+      hash: md5
+      md5: d46a998245ceedac788c7b58197fc0e6
+      size: 1533
+    - path: processed_schema.yaml
+      hash: md5
+      md5: 5d8c2f0f20db05ea6ee3cc45ed14b6f4
+      size: 895
+    - path: src/RuralCreditPredictor/pipeline/data_preprocessing.py
+      hash: md5
+      md5: a1237bdf8f0211f81ed697ece498641a
+      size: 1312
+    outs:
+    - path: artifacts/data_preprocessing/processed_data.csv
+      hash: md5
+      md5: 987d373828a06f8d5805ee9d5e874531
+      size: 1854217
+  data_transformation:
+    cmd: python src/RuralCreditPredictor/pipeline/data_transformation.py
+    deps:
+    - path: artifacts/data_preprocessing/processed_data.csv
+      hash: md5
+      md5: 987d373828a06f8d5805ee9d5e874531
+      size: 1854217
+    - path: config/config.yaml
+      hash: md5
+      md5: d46a998245ceedac788c7b58197fc0e6
+      size: 1533
+    - path: src/RuralCreditPredictor/pipeline/data_transformation.py
+      hash: md5
+      md5: fd4b84ccc9a5ae46e241c10308474c9e
+      size: 1264
+    outs:
+    - path: artifacts/data_transformation/data_transformer.pkl
+      hash: md5
+      md5: c48770d5bb724e155041569fcb9319b9
+      size: 2266
+  model_training:
+    cmd: python src/RuralCreditPredictor/pipeline/model_training.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: d46a998245ceedac788c7b58197fc0e6
+      size: 1533
+    - path: params.yaml
+      hash: md5
+      md5: 7b3bb5f7a9dd76a07894115ac7e1a29b
+      size: 178
+    - path: src/RuralCreditPredictor/pipeline/model_training.py
+      hash: md5
+      md5: 08891ee78061c5f221955044e625a17f
+      size: 1049
+    outs:
+    - path: artifacts/model_training/latest_run_id.txt
+      hash: md5
+      md5: 666be3dbafee88ab611efbeddbd03750
+      size: 32
+  model_evaluation:
+    cmd: python src/RuralCreditPredictor/pipeline/model_evaluation.py
+    deps:
+    - path: artifacts/data_transformation/data_transformer.pkl
+      hash: md5
+      md5: c48770d5bb724e155041569fcb9319b9
+      size: 2266
+    - path: artifacts/model_training/latest_run_id.txt
+      hash: md5
+      md5: 666be3dbafee88ab611efbeddbd03750
+      size: 32
+    - path: config/config.yaml
+      hash: md5
+      md5: d46a998245ceedac788c7b58197fc0e6
+      size: 1533
+    - path: params.yaml
+      hash: md5
+      md5: 7b3bb5f7a9dd76a07894115ac7e1a29b
+      size: 178
+    - path: src/RuralCreditPredictor/pipeline/model_evaluation.py
+      hash: md5
+      md5: dec51326feabdc12c98fda33ff3e9512
+      size: 1082
+    outs:
+    - path: artifacts/model_evaluation/test_metrics.txt
+      hash: md5
+      md5: 052e3110310702357647526e42289aa1
+      size: 131
+    - path: artifacts/model_evaluation/train_metrics.txt
+      hash: md5
+      md5: fed52c49806c2a0ddd0a28f071371d6a
+      size: 132
