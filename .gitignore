@@ -167,3 +167,6 @@ mlruns/
 
 # Exclude artifacts
 artifacts/
+
+# Data to ignore
+notebook/data/RuralCreditData.csv
