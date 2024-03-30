@@ -11,6 +11,7 @@ ensure
 pyYAML
 joblib
 dvc
+dvc_s3
 mlflow
 dagshub
 
