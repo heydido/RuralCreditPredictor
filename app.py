@@ -18,6 +18,7 @@ def home():
 # TODO: Fix the training route
 @app.route('/train', methods=['GET'])
 def training():
+    # launch app.py from the correct venv for successful training
     os.system("dvc repro")
     return "Training Successful!"
 
